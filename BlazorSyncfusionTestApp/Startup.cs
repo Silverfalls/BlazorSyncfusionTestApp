@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using BlazorSyncfusionTestApp.Data;
 using Microsoft.AspNetCore.Localization;
 using Syncfusion.Blazor;
 
@@ -31,7 +30,6 @@ namespace BlazorSyncfusionTestApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddSyncfusionBlazor();
             services.AddSingleton(typeof(ISyncfusionStringLocalizer), typeof(SyncfusionLocalizer));
