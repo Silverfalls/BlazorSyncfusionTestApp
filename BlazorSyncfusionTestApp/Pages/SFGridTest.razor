@@ -1,0 +1,43 @@
+﻿@page "/sfgridtest"
+
+<h3>SFGrid</h3>
+
+<SfGrid DataSource="TestdataList" AllowSorting="true" AllowFiltering="true" Locale="de">
+    <GridFilterSettings Type ="Syncfusion.Blazor.Grids.FilterType.Excel"></GridFilterSettings>
+    <GridColumns>
+        <GridColumn Field="@nameof(Testdata.Name)"
+                    HeaderText="Name">
+        </GridColumn>
+        
+        <GridColumn Field="@nameof(Testdata.Date)"
+                    Format="d"
+                    Type="ColumnType.Date"
+                    HeaderText="Wert">
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+
+@code {
+
+    public List<Testdata> TestdataList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TestdataList = Enumerable.Range(1, 15).Select(x => new Testdata()
+        {
+            Id = 1000 + x,
+            Name = (new string[] { "Paul", "Max", "Goofy", "Donald", "Peter" })[new Random().Next(5)],
+            Date = DateTime.Now.AddDays(-x),
+            Value = new decimal(2.3 * x)
+        }).ToList();
+    }
+
+    public class Testdata
+    {
+        public int? Id { get; set; }
+        public string Name { get; set; }
+        public decimal Value { get; set; }
+        public DateTime Date { get; set; }
+    }
+}
